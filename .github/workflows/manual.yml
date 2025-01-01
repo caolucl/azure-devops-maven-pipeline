@@ -1,0 +1,24 @@
+# This is a basic workflow that is manually triggered
+
+name: Trigger Azure Devops pipeline
+
+# Controls when the action will run. Workflow runs when manually triggered using the UI
+# or API.
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Azure Pipelines Action
+        uses: Azure/pipelines@v1.2
+        with:
+          azure-devops-project-url: ${{ secrets.azure_devops_project_url }}
+          azure-pipeline-name: ${{ secrets.azure_pipeline_name }}
+          azure-devops-token: ${{ secrets.azure_devops_token }}
+      
+
